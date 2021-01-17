@@ -1,0 +1,41 @@
+import React, { Component } from 'react'
+import axios from 'axios'
+
+
+// var axios = require('axios');
+var data = JSON.stringify({ "app": "surfersway", "input": "setContacts", "clientid": "xyz", "name": "shanmugam", "emailid": "abc@gmail.com", "phonenumber": "9500846162", "address": "123", "filename": "2123" });
+
+var config = {
+    method: 'post',
+    url: 'https://surfersway.in/api/get_service',
+    headers: {
+        'appKey': 'surfersway',
+        'Content-Type': 'application/json'
+    },
+    data: data
+};
+
+class Custompost extends Component {
+
+    buttonHandler = (e) => {
+        e.preventDefault()
+        axios(config)
+            .then(response => {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(error =>{
+                console.log(error);
+            });
+    }
+
+
+    render() {
+        return (
+            <div>
+                <button onClick={this.buttonHandler}>POST</button>
+            </div>
+        )
+    }
+}
+
+export default Custompost
